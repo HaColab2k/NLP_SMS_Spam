@@ -1,11 +1,10 @@
 # NATURAL-LANGUAGE-PROCESSING (NLP)|SMS Spam
 
 This repository contains scripts for building an SMS spam detection system using Natural Language Processing (NLP) techniques.
-- [Installation](#installation)
-- [Data Preprocessing](#data-preprocessing)
-- [Model Training](#model-training)
-- [Evaluation](#evaluation)
-- [Results](#results)
+- [Installation](#)
+- [Exploratory Data Analysis (EDA)](#)
+- [Text Preprocessing](#)
+- [Building and evaluating a model](#)
 ## 1. Install the required libraries:
 ```Python
 pip install pandas numpy matplotlib seaborn nltk 
