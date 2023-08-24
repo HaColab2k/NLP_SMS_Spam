@@ -7,7 +7,7 @@ This repository contains scripts for building an SMS spam detection system using
 pip install pandas numpy matplotlib seaborn nltk 
 pip install -U scikit-learn
 ```
-## 2. Getting started
+## 2. Exploratory Data Analysis (EDA)
 ### 2.1. Importing Libraries:
 ```Python
 import pandas as pd
