@@ -17,7 +17,7 @@ metrics.confusion_matrix(y_test, y_pred_class)
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/984b818c-a9ff-406d-bb57-2239ef51793a)
 
 Making predictions using the trained Naive Bayes classifier on the test data X_test_dtm. The accuracy of the predictions is calculated using metrics.accuracy_score() and printed. The confusion matrix is calculated using metrics.confusion_matrix() to show the true positive, true negative, false positive, and false negative predictions.
-# Comparing Predictions to Actual Data:
+## Comparing Predictions to Actual Data:
 X_test[y_pred_class > y_test]
 X_test[y_pred_class < y_test]
 X_test[4949]
