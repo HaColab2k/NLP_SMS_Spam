@@ -1,7 +1,11 @@
 # NATURAL-LANGUAGE-PROCESSING (NLP)|SMS Spam
 
 This repository contains scripts for building an SMS spam detection system using Natural Language Processing (NLP) techniques.
-
+- [Installation](#installation)
+- [Data Preprocessing](#data-preprocessing)
+- [Model Training](#model-training)
+- [Evaluation](#evaluation)
+- [Results](#results)
 ## 1. Install the required libraries:
 ```Python
 pip install pandas numpy matplotlib seaborn nltk 
@@ -203,7 +207,6 @@ pipe.fit(X_train, y_train)
 y_pred = pipe.predict(X_test)
 ```
 Sets up a pipeline that includes a CountVectorizer, a TfidfTransformer, and a MultinomialNB classifier. The pipeline applies text preprocessing steps (like counting word occurrences and applying TF-IDF transformation) along with the classifier. The pipeline is then fitted on the training data and used to make predictions on the test data. Accuracy and confusion matrix are printed similarly to the previous case.
-## Usage
--Prepare your SMS dataset in a CSV format.
--Open the Jupyter notebook sms_spam_detection.ipynb to run the analysis and train the classification models.
--Follow the code and comments in the notebook to understand the process of pre-processing, data visualization, and model training.
+## Reference
+https://en.wikipedia.org/wiki/Natural_language_processing
+https://www.kaggle.com/code/faressayah/natural-language-processing-nlp-for-beginners/notebook#%F0%9F%94%8D-Exploratory-Data-Analysis-(EDA)
