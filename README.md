@@ -91,12 +91,16 @@ sms.dropna(how="any", inplace=True, axis=1)
 sms.columns = ['label', 'message']
 ```
 This code reads data from a CSV file named "spam.csv" and sets the column names to "label" and "message". It drops any columns with missing values.
+![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/8eb210be-887f-4a22-beeb-ff43d6c0a274)
 
 ## Descriptive Analysis and Visualization:
 ```Python
 sms['label_num'] = sms.label.map({'ham':0, 'spam':1})
 sms['message_len'] = sms.message.apply(len)
-
+```
+![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/ccd0c658-ba9d-42e7-b172-f21a3aa9c66f)
+![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/44f94817-06bf-4a7a-beeb-bdb2020e5f0d)
+```Python
 plt.figure(figsize=(6, 4))
 sms[sms.label=='ham'].message_len.plot(bins=25, kind='hist', color='blue', 
                                        label='Ham messages', alpha=0.7)
@@ -106,7 +110,6 @@ plt.legend()
 plt.xlabel("Message Length")
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/58d745bd-8473-4b2b-b63c-73a968e5042b)
-
 This code adds new columns to the DataFrame: "label_num" (numerical label) and "message_len" (message length). It then creates a histogram to visualize the distribution of message lengths for both ham and spam messages.
 
 ## Descriptive Statistics and Individual Message Inspection:
@@ -115,6 +118,8 @@ sms[sms.label=='ham'].describe()
 sms[sms.label=='spam'].describe()
 sms[sms.message_len == 910].message.iloc[0]
 ```
+![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/3de188e3-ff75-44fa-b3ca-53ac98bad0c4)
+
 This code calculates descriptive statistics for message lengths separately for ham and spam messages. The last line retrieves the content of a specific message with a length of 910 characters.
 ## Usage
 -Prepare your SMS dataset in a CSV format.
