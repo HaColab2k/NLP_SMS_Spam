@@ -1,12 +1,12 @@
 # BUILDING AND EVALUATING A MODEL 
-# Training Multinomial Naive Bayes Classifier
+## Training Multinomial Naive Bayes Classifier
 ```Python
 from sklearn.naive_bayes import MultinomialNB
 nb = MultinomialNB()
 %time nb.fit(X_train_dtm, y_train)
 ```
 Fit the classifier on the training data X_train_dtm (presumably the Document-Term Matrix) and the corresponding labels y_train. The %time command is used to measure the execution time of the fitting process.
-# Making Predictions and Calculating Accuracy and Confusion Matrix:
+## Making Predictions and Calculating Accuracy and Confusion Matrix:
 ```Python
 y_pred_class = nb.predict(X_test_dtm)
 print("=======Accuracy Score===========")
@@ -24,14 +24,14 @@ X_test[4949]
 
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/f069f7f4-87d8-401b-a86e-bf51176af522)
 
-# Calculating ROC AUC Score:
+## Calculating ROC AUC Score:
 ```Python
 y_pred_prob = nb.predict_proba(X_test_dtm)[:, 1]
 metrics.roc_auc_score(y_test, y_pred_prob)
 ```
 The predicted probabilities of the positive class are calculated using predict_proba(), and the ROC AUC score is computed using metrics.roc_auc_score()
 
-### 4.5 Using a Pipeline with Text Preprocessing:
+## Using a Pipeline with Text Preprocessing:
 ```Python
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
