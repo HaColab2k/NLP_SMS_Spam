@@ -43,6 +43,7 @@ This imports the CountVectorizer class from scikit-learn and initializes an inst
 vect.get_feature_names_out()
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/f49df1f9-6133-408c-ac46-3302d2916fef)
+
 This line retrieves the list of feature names (words) learned by the vectorizer. The get_feature_names_out() function returns the unique words in the vocabulary.
 ### 2.6. Transforming Text Data to Document-Term Matrix (DTM):
 ```Python
@@ -65,6 +66,7 @@ df = pd.DataFrame(simple_train_dtm.toarray(), columns=vect.get_feature_names_out
 df
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/a113225d-5f00-46d0-9925-8470caa29592)
+
 This code creates a DataFrame df from the dense document-term matrix, where each row corresponds to a document and each column corresponds to a word in the vocabulary.
 ### 2.9. Checking the Type of Document-Term Matrix:
 ```Python
@@ -76,6 +78,7 @@ print(type(simple_train_dtm))
 print(simple_train_dtm)
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/f783d6b8-9aaf-4e7b-9dd3-d9dabc21958e)
+
 ### Transforming Testing Data and Creating a DataFrame:
 ```Python
 simple_test = ["please don't call me"]
@@ -84,6 +87,7 @@ pd.DataFrame(simple_test_dtm.toarray(), columns=vect.get_feature_names_out())
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/9ab02628-2f4a-4eac-9a75-cd3d88bdaf74)
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/eb86b731-0b08-43b4-a3c7-35fb7c6d8eca)
+
 This code transforms a new testing dataset, simple_test, into a document-term matrix using the existing vocabulary. It then creates a DataFrame from the dense matrix, which represents the transformed testing data.
 ### 2.11. Reading and Preprocessing Data from a CSV File:
 ```Python
@@ -102,6 +106,7 @@ sms['message_len'] = sms.message.apply(len)
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/ccd0c658-ba9d-42e7-b172-f21a3aa9c66f)
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/44f94817-06bf-4a7a-beeb-bdb2020e5f0d)
+
 ```Python
 plt.figure(figsize=(6, 4))
 sms[sms.label=='ham'].message_len.plot(bins=25, kind='hist', color='blue', 
@@ -112,6 +117,7 @@ plt.legend()
 plt.xlabel("Message Length")
 ```
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/58d745bd-8473-4b2b-b63c-73a968e5042b)
+
 This code adds new columns to the DataFrame: "label_num" (numerical label) and "message_len" (message length). It then creates a histogram to visualize the distribution of message lengths for both ham and spam messages.
 
 ### 2.13. Descriptive Statistics and Individual Message Inspection:
@@ -123,6 +129,44 @@ sms[sms.message_len == 910].message.iloc[0]
 ![image](https://github.com/HaColab2k/NLP_SMS_Spam/assets/127838132/3de188e3-ff75-44fa-b3ca-53ac98bad0c4)
 
 This code calculates descriptive statistics for message lengths separately for ham and spam messages. The last line retrieves the content of a specific message with a length of 910 characters.
+## 3. Text Preprocessing
+```Python
+import string
+from nltk.corpus import stopwords
+
+def text_process(mess):
+    """
+    Takes in a string of text, then performs the following:
+    1. Remove all punctuation
+    2. Remove all stopwords
+    3. Returns a list of the cleaned text
+    """
+    STOPWORDS = stopwords.words('english') + ['u', 'ü', 'ur', '4', '2', 'im', 'dont', 'doin', 'ure']
+    # Check characters to see if they are in punctuation
+    nopunc = [char for char in mess if char not in string.punctuation]
+
+    # Join the characters again to form the string.
+    nopunc = ''.join(nopunc)
+    
+    # Now just remove any stopwords
+    return ' '.join([word for word in nopunc.split() if word.lower() not in STOPWORDS])
+```
+```Python
+text_process(mess)
+``` 
+performs text preprocessing on a given string of text. The purpose of this function is to clean and prepare the text data for further analysis or natural language processing tasks.
+```Python
+nopunc = [char for char in mess if char not in string.punctuation]
+```
+creates a list nopunc containing characters from the input mess that are not in the list of punctuation characters from the string library.
+```Python
+nopunc = ''.join(nopunc)
+```
+joins the characters in the nopunc list to form a single string without punctuation.
+```Python
+STOPWORDS = stopwords.words('english') + ['u', 'ü', 'ur', '4', '2', 'im', 'dont', 'doin', 'ure']
+```
+defines a custom list of stopwords to supplement the NLTK stopwords. It includes additional words like chat slang or internet abbreviations that you want to consider as stopwords.
 ## Usage
 -Prepare your SMS dataset in a CSV format.
 -Open the Jupyter notebook sms_spam_detection.ipynb to run the analysis and train the classification models.
